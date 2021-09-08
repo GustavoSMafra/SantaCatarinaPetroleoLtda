@@ -35,38 +35,38 @@ void Sensor1200(int sensores[3][6], int pc){
 }
 
 void Supervisor(int sensores[3][6], int contramedida[3], int pc){
-    bool oil = false;
-    bool gas = false;
+    bool oil = false; // CONDIÇÃO DE CONTRAMEDIDA NO OIL
+    bool gas = false; // CONDIÇÃO DE CONTRAMEDIDA NO GAS
 
-    int status = rand()%10;
+    int status = rand()%10; // MAL FUNCIONAMENTO
     if(status == 0){
-        Sleep(300);
-        contramedida[pc] = 4;
+        Sleep(300); // ESPERA DE DESLIGAMENTO
+        contramedida[pc] = 4; // CONTRAMEDIDA DE MAL FUNCIONAMNTO
 
     } else {
         for(int i = 0; i<6; i++){
-            if (i % 2 == 0 && sensores[pc][i] == 1 && gas == false){
+            if (i % 2 == 0 && sensores[pc][i] == 1 && gas == false){ // VERIFICA PROBLEMAS NO GAS
                 gas = true;
             }
-            else if (i % 2 != 0 && sensores[pc][i] == 1 && oil == false){
+            else if (i % 2 != 0 && sensores[pc][i] == 1 && oil == false){ // VERIFICA PROBLEMA NO OIL
                 oil = true;
             }
         }
 
-        if(gas == true && oil == true){
+        if(gas == true && oil == true){ // PROBLEMA NAS DUAS TUBULAÇÕES
             contramedida[pc] = 1;
             Sleep(200);
         }
-        else if(gas == true){
+        else if(gas == true){ // PROBLEMA APENAS NA TUBULAÇÃO DE GAS
             contramedida[pc] = 2;
             Sleep(200);
         }
-        else if(oil == true){
+        else if(oil == true){ // PROBLEMA APENAS NA TUBULAÇÃO DE OIL
             contramedida[pc] = 3;
             Sleep(200);
         }
         else{
-            contramedida[pc] = 0;
+            contramedida[pc] = 0; // SEM PROBLEMAS
         }
     }
     return;
@@ -90,10 +90,10 @@ void Display(int sensores[3][6], int contramedida[3], int time[4]){
             cout << "Realizou uma contramedida na tubulação de gás e petróleo, durante 200 ms"<<endl;
         }
         if(contramedida[i] == 2){
-            cout << "Realizou uma contramedida na tubulação de gás,  durante 200 ms"<<endl;
+            cout << "Realizou uma contramedida na tubulação de gás, durante 200 ms"<<endl;
         }
         if(contramedida[i] == 3){
-            cout << "Realizou uma contramedida na tubulação de petróleo,  durante 200 ms"<<endl;
+            cout << "Realizou uma contramedida na tubulação de petróleo, durante 200 ms"<<endl;
         }
         if(contramedida[i] == 4){
             cout << "Problema de mal funcionamento no poço, foi necessário desligar o mesmo em 300 ms"<<endl;
@@ -108,11 +108,11 @@ int main() {
     setlocale(LC_ALL, "portuguese");
     bool work = true;
 
-    srand(time(NULL));
+    srand(time(NULL)); // RAND COM TIME
 
-    int tempo[4] = {};
-    int sensores[3][6] = {};
-    int contramedida[3] = {};
+    int tempo[4] = {}; // TEMPOS
+    int sensores[3][6] = {}; // AMOSTRA DOS SENSORES
+    int contramedida[3] = {}; // CONTRAMEDIDAS EM CADA TUBULAÇÃO
 
 
     while(work == true){
