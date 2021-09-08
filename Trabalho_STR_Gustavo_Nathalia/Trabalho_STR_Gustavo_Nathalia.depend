@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1630862345 source:c:\users\gustavo\desktop\trabalho_str_gustavo_nathalia\main.cpp
+	<iostream>
+	<windows.h>
+	<chrono>
+	<time.h>
+	<conio.h>
+
